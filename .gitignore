@@ -28,3 +28,4 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+/fluffywater/Assets/Plugins/iOS/libgvrunity.a
