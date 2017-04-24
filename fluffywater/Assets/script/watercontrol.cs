@@ -7,6 +7,7 @@ public class watercontrol : MonoBehaviour {
 	public static bool createmakers = false;
 	//water objectlist
 	public List<GameObject> waterobjs = new List<GameObject>();
+	public List<markerAction> markerRefs = new List<markerAction>();
 	// water obj
 	public GameObject sprinkleObj;
 	//water maker button
@@ -19,6 +20,9 @@ public class watercontrol : MonoBehaviour {
 	private Vector3 tempPos;
 	public float disMax = .5f;
 	public bool firstTime = true;
+	//random time value for emissions
+	public float particleTimeLimit;
+
 	public void Awake()
 	{
 		makerblock = makerButton.colors;
@@ -33,20 +37,66 @@ public class watercontrol : MonoBehaviour {
 		firstTime =true;
 		makerCounter = 0;
 
-		for(int i=0;i<=makerMax;i++)
+		for(int i=waterobjs.Count-1;i>=0;i--)
 		{
 			Destroy(waterobjs[i].gameObject);
 
 		}
 		waterobjs.Clear();
+		markerRefs.Clear();
+	}
+
+	public void RandomEmitTime()
+	{
+		if(createmakers)
+		{
+			for(int i=0;i<waterobjs.Count;i++)
+			{
+				float rantime = Random.Range(.5f,particleTimeLimit);
+				markerRefs[i].doCour(rantime);
+			}
+		}
+	}
+
+	public void defaultPlay()
+	{
+		if(createmakers)
+		{
+			for(int i=0;i<waterobjs.Count;i++)
+			{
+				if(markerRefs[i].psPlayDone)
+				{
+					markerRefs[i].playParticle();
+				}
+			}
+
+		}
+
+	}
+
+	public void RandomColor()
+	{
+
+
+		Color col = new Color(Random.Range(0f,1f),Random.Range(0f,1f),Random.Range(0f,1f));
+		for(int i=0;i<waterobjs.Count;i++)
+		{
+			RandomColorPart ran = waterobjs[i].GetComponent<RandomColorPart>();
+			ran.ranColor(col);
+		}
 	}
 
 	public void startWaterProcess()
 	{
 		createmakers = true;
-		makerButton.interactable = false;
+		StartCoroutine(notInteract());
 	}
 
+	IEnumerator notInteract()
+	{
+		yield return new WaitForSeconds(1f);
+		makerButton.interactable = false;
+	}
 	public void createwater(Vector3 pos)
 	{
 	//	print("working");
@@ -58,6 +108,7 @@ public class watercontrol : MonoBehaviour {
 			// make object
 			GameObject wawa = Instantiate(sprinkleObj,tempPos,sprinkleObj.transform.rotation)as GameObject;
 			waterobjs.Add(wawa);
+			markerRefs.Add(wawa.GetComponent<markerAction>());
 			// make object end
 			makerCounter++;
 		//	print("make the first one");
@@ -67,10 +118,11 @@ public class watercontrol : MonoBehaviour {
 			if(dis>disMax && makerCounter<=makerMax)
 			{
 				tempPos =pos;
-				print("make point " + makerCounter);
+			//	print("make point " + makerCounter);
 				// make object
 				GameObject wawa = Instantiate(sprinkleObj,tempPos,sprinkleObj.transform.rotation)as GameObject;
 				waterobjs.Add(wawa);
+				markerRefs.Add(wawa.GetComponent<markerAction>());
 				// make object end
 				makerCounter++;
 
