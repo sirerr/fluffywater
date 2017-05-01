@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+namespace fluffywater{
+
 public class watercontrol : MonoBehaviour {
 	public static bool createmakers = false;
 	//water objectlist
@@ -129,4 +131,5 @@ public class watercontrol : MonoBehaviour {
 			}
 		}
 	}
+}
 }

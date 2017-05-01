@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace fluffywater{
+
 public class markerAction : MonoBehaviour {
 
 	public ParticleSystem childPS;
@@ -45,4 +47,6 @@ public class markerAction : MonoBehaviour {
 	{
 		StartCoroutine(waiting(newtime));
 	}
+}
+
 }

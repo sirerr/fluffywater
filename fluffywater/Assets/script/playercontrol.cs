@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace fluffywater{
+
 public class playercontrol : MonoBehaviour {
 
 	public bool mousedown = false;
@@ -39,4 +41,5 @@ public class playercontrol : MonoBehaviour {
 		}
 
 	}
+}
 }

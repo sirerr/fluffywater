@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace fluffywater{
+
 public class RandomColorPart : MonoBehaviour {
 
 	private ParticleSystem childPart;
@@ -31,4 +33,5 @@ public class RandomColorPart : MonoBehaviour {
 	void Update () {
 		
 	}
+}
 }
