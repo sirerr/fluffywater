@@ -22,7 +22,9 @@ public class grassenvironment : MonoBehaviour {
 			float ranZ = Random.Range(colBounds.min.z,colBounds.max.z);
 			Vector3 vec = new Vector3(ranX,ranY,ranZ);
 
-			GameObject grassobj = Instantiate(grasses[grasschoice],vec,grasses[grasschoice].transform.rotation,transform)as GameObject;
+			GameObject grassobj = Instantiate(grasses[grasschoice],vec,grasses[grasschoice].transform.rotation )as GameObject;
+				Vector3 scale = grasses [grasschoice].transform.localScale;
+				grassobj.transform.localScale = scale;
 		}
 
 	

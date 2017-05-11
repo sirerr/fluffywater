@@ -21,13 +21,13 @@ public class playercontrol : MonoBehaviour {
 
 	void Update () {
 
+			camRaycast();
 		mousedown =  Input.GetMouseButtonDown(0);
 		mousehold = Input.GetMouseButton(0);
 
-		if(mousehold && watercontrol.createmakers)
-		{
-			camRaycast();
-		}
+	
+
+
 	}
 
 	public void camRaycast()
@@ -35,9 +35,23 @@ public class playercontrol : MonoBehaviour {
 		RaycastHit hit;
 		if(Physics.Raycast(transform.position,transform.forward,out hit,Mathf.Infinity,mask.value))
 		{
-		//	print("this is working");
-		//	print(hit.point);
-			waterConRef.createwater(hit.point);
+
+				if(mousehold && watercontrol.createmakers)
+				{
+					waterConRef.createwater(hit.point);
+				}
+
+				if (mousedown) 
+				{
+					if (hit.transform.GetComponent<objectAction> () != null) 
+					{
+						objectAction objA = hit.transform.GetComponent<objectAction> ();
+
+						objA.mainAction ();
+					}
+				}
+
+
 		}
 
 	}
