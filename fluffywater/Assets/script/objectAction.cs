@@ -9,7 +9,7 @@ public class objectAction : MonoBehaviour {
 	
 	}
 
-	public void Update()
+	public virtual void Update()
 	{
 	
 	}

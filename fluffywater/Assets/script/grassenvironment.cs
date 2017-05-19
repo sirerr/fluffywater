@@ -9,14 +9,16 @@ public class grassenvironment : MonoBehaviour {
 	public List <GameObject> grasses = new List<GameObject>();
 	public int grassAmount = 40;
 	private Bounds colBounds;
-
+        private Collider[] colls;
 	void Awake()
 	{
-		colBounds = GetComponent<Collider>().bounds;
+            colls = GetComponents<Collider>();
 
 		for(int i=0; i<grassAmount;i++)
 		{
-			int grasschoice = Random.Range(0,grasses.Count);
+                int colChoice = Random.Range(0, colls.Length);
+                colBounds = colls[colChoice].bounds;
+                int grasschoice = Random.Range(0,grasses.Count);
 			float ranX = Random.Range(colBounds.min.x,colBounds.max.x);
 			float ranY = Random.Range(colBounds.min.y,colBounds.max.y);
 			float ranZ = Random.Range(colBounds.min.z,colBounds.max.z);
