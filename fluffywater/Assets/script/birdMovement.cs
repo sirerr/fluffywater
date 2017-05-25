@@ -59,7 +59,7 @@ namespace fluffywater
             temp.y = transform.position.y;
             float dis = Vector3.Distance(transform.position, temp);
             anim.SetFloat("distance", dis);
-            print(dis);
+         //   print(dis);
         }
 
         IEnumerator nextSpot()
@@ -68,12 +68,17 @@ namespace fluffywater
             {
                 FindNewPoint();
                 float possibleHead = Random.Range(0f, 1f);
-                if (possibleHead < .5)
+                if (possibleHead < .3f)
                 {
                     anim.SetTrigger("headmove");
                 }
-                yield return new WaitForSeconds(waitTime);
-
+                float possiblepoke = Random.Range(0f, 1f);
+                if (possiblepoke < .5f)
+                {
+                    anim.SetTrigger("poke");
+                }
+                float newSpotTime = Random.Range(NotGroundmin, NotGroundmax);
+                yield return new WaitForSeconds(newSpotTime);
                 StartCoroutine(nextSpot());
             }
             else

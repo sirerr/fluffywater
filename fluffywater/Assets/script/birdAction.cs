@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 
 namespace fluffywater
@@ -16,13 +17,22 @@ namespace fluffywater
         void Awake()
         {
             mat = GetComponentInChildren<SkinnedMeshRenderer>().material;
+            birdcolor = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
             mat.color = birdcolor;
+
+
+            
         }
 
         // Use this for initialization
         void Start()
         {
-
+            EventTrigger trigger = GetComponent<EventTrigger>();
+            EventTrigger.Entry entry = new EventTrigger.Entry();
+            entry.eventID = EventTriggerType.PointerEnter;
+            entry.callback.AddListener((PointerEventData) => { mainAction(); });
+            trigger.triggers.Add(entry);
+          
         }
 
         // Update is called once per frame
@@ -33,7 +43,7 @@ namespace fluffywater
 
         public override void mainAction()
         {
-
+         
         }
     }
 }

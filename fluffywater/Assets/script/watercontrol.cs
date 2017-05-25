@@ -24,7 +24,7 @@ public class watercontrol : MonoBehaviour {
 	public bool firstTime = true;
 	//random time value for emissions
 	public float particleTimeLimit;
-
+    public Color newRanColor;
 	public void Awake()
 	{
 		makerblock = makerButton.colors;
@@ -80,11 +80,11 @@ public class watercontrol : MonoBehaviour {
 	{
 
 
-		Color col = new Color(Random.Range(0f,1f),Random.Range(0f,1f),Random.Range(0f,1f));
+	//	 RanColor = new Color(Random.Range(0f,1f),Random.Range(0f,1f),Random.Range(0f,1f));
 		for(int i=0;i<waterobjs.Count;i++)
 		{
 			RandomColorPart ran = waterobjs[i].GetComponent<RandomColorPart>();
-			ran.ranColor(col);
+			ran.ranColor(newRanColor);
 		}
 	}
 
