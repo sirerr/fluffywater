@@ -55,8 +55,11 @@ namespace fluffywater
         // Update is called once per frame
         void Update()
         {
-            float dis = Vector3.Distance(transform.position, agent.destination);
+            Vector3 temp = agent.destination;
+            temp.y = transform.position.y;
+            float dis = Vector3.Distance(transform.position, temp);
             anim.SetFloat("distance", dis);
+            print(dis);
         }
 
         IEnumerator nextSpot()

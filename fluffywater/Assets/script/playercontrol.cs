@@ -21,14 +21,11 @@ public class playercontrol : MonoBehaviour {
 
 	void Update () {
 
-			camRaycast();
+		
 		mousedown =  Input.GetMouseButtonDown(0);
 		mousehold = Input.GetMouseButton(0);
-
-	
-
-
-	}
+        camRaycast();
+        }
 
 	public void camRaycast()
 	{

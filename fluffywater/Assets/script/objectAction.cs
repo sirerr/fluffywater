@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class objectAction : MonoBehaviour {
 
-	public void Awake()
-	{
-	
-	}
 
 	public virtual void Update()
 	{
