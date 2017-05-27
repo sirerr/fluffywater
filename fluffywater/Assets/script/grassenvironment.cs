@@ -9,7 +9,8 @@ public class grassenvironment : MonoBehaviour {
 	public List <GameObject> grasses = new List<GameObject>();
 	public int grassAmount = 40;
 	private Bounds colBounds;
-        private Collider[] colls;
+    private Collider[] colls;
+		public Transform player;
 	void Awake()
 	{
             colls = GetComponents<Collider>();
@@ -25,6 +26,8 @@ public class grassenvironment : MonoBehaviour {
 			Vector3 vec = new Vector3(ranX,ranY,ranZ);
 
 			GameObject grassobj = Instantiate(grasses[grasschoice],vec,grasses[grasschoice].transform.rotation )as GameObject;
+				grassobj.transform.LookAt (player, Vector3.up);
+				grassobj.transform.forward = grassobj.transform.forward * -1;
 				Vector3 scale = grasses [grasschoice].transform.localScale;
 				grassobj.transform.localScale = scale;
 		}

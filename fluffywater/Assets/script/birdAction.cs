@@ -27,12 +27,12 @@ namespace fluffywater
         // Use this for initialization
         void Start()
         {
-            EventTrigger trigger = GetComponent<EventTrigger>();
-            EventTrigger.Entry entry = new EventTrigger.Entry();
-            entry.eventID = EventTriggerType.PointerEnter;
-            entry.callback.AddListener((PointerEventData) => { mainAction(); });
-            trigger.triggers.Add(entry);
-          
+//            EventTrigger trigger = GetComponent<EventTrigger>();
+//            EventTrigger.Entry entry = new EventTrigger.Entry();
+//            entry.eventID = EventTriggerType.PointerEnter;
+//            entry.callback.AddListener((PointerEventData) => { mainAction(); });
+//            trigger.triggers.Add(entry);
+//          
         }
 
         // Update is called once per frame
@@ -43,7 +43,8 @@ namespace fluffywater
 
         public override void mainAction()
         {
-         
+			waterControlRef.newRanColor = birdcolor;
+			waterControlRef.RandomColor ();
         }
     }
 }
