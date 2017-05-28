@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class playerRecticle : GvrBasePointer {
 
-	private GvrPointerManager gvrpointman;
+	
 	// Minimum distance of the reticle (in meters).
 	public const float RETICLE_DISTANCE_MIN = 0.45f;
 	// Maximum distance of the reticle (in meters).
