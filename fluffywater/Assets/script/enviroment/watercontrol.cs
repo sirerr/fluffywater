@@ -25,11 +25,14 @@ public class watercontrol : MonoBehaviour {
 	//random time value for emissions
 	public float particleTimeLimit;
     public Color newRanColor;
-        public EggLaycontrol egglaycon;
+    
+    // animation control
+    public Animator creatBallAnim;
+    public Animator playBallAnim;
+    
 
 	public void Awake()
 	{
-		makerblock = makerButton.colors;
 
 	}
 
@@ -40,7 +43,7 @@ public class watercontrol : MonoBehaviour {
 		createmakers = false;
 		firstTime =true;
 		makerCounter = 0;
-
+        creatBallAnim.enabled = true;
 		for(int i=waterobjs.Count-1;i>=0;i--)
 		{
 			Destroy(waterobjs[i].gameObject);
@@ -64,7 +67,7 @@ public class watercontrol : MonoBehaviour {
 
 	public void defaultPlay()
 	{
-		if(createmakers)
+		if(createmakers && waterobjs.Count>=1)
 		{
 			for(int i=0;i<waterobjs.Count;i++)
 			{
@@ -92,14 +95,24 @@ public class watercontrol : MonoBehaviour {
 	public void startWaterProcess()
 	{
 		createmakers = true;
-		StartCoroutine(notInteract());
+            print("this is working");
+        creatBallAnim.enabled = false;
+ 
 	}
 
-	IEnumerator notInteract()
-	{
-		yield return new WaitForSeconds(1f);
-		makerButton.interactable = false;
-	}
+        public void Update()
+        {
+            if (waterobjs.Count >= 1)
+            {
+                playBallAnim.enabled = true;
+            }
+            else
+            {
+                playBallAnim.enabled = false;
+            }
+        }
+
+ 
 	public void createwater(Vector3 pos)
 	{
 	//	print("working");
