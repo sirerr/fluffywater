@@ -29,7 +29,8 @@ public class watercontrol : MonoBehaviour {
     // animation control
     public Animator creatBallAnim;
     public Animator playBallAnim;
-    
+        //collider
+        public Collider col;
 
 	public void Awake()
 	{
@@ -51,6 +52,7 @@ public class watercontrol : MonoBehaviour {
 		}
 		waterobjs.Clear();
 		markerRefs.Clear();
+            col.enabled = false;
 	}
 
 	public void RandomEmitTime()
@@ -97,6 +99,7 @@ public class watercontrol : MonoBehaviour {
 		createmakers = true;
             print("this is working");
         creatBallAnim.enabled = false;
+            col.enabled = true;
  
 	}
 
