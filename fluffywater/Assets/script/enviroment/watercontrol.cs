@@ -75,7 +75,9 @@ public class watercontrol : MonoBehaviour {
 			{
 				if(markerRefs[i].psPlayDone)
 				{
-					markerRefs[i].playParticle();
+                        RandomColorPart ran = waterobjs[i].GetComponent<RandomColorPart>();
+                        ran.ranColor(newRanColor);
+                        markerRefs[i].playParticle();
 				}
 			}
 
@@ -85,8 +87,6 @@ public class watercontrol : MonoBehaviour {
 
 	public void RandomColor()
 	{
-
-
 	for(int i=0;i<waterobjs.Count;i++)
 		{
 			RandomColorPart ran = waterobjs[i].GetComponent<RandomColorPart>();
@@ -97,7 +97,7 @@ public class watercontrol : MonoBehaviour {
 	public void startWaterProcess()
 	{
 		createmakers = true;
-            print("this is working");
+            
         creatBallAnim.enabled = false;
             col.enabled = true;
  

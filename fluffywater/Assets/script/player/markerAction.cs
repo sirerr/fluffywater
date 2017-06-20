@@ -8,17 +8,24 @@ public class markerAction : MonoBehaviour {
 
 	public ParticleSystem childPS;
 	public bool psPlayDone = true;
-
+    public Color partColor;
 	public void Awake()
 	{
 		getChilds();
+        
 
 	}
 
 	public void getChilds()
 	{
 		childPS = GetComponentInChildren<ParticleSystem>();
+        
 	}
+
+        public void setColor()
+        {
+
+        }
 	
 	// Update is called once per frame
 	void Update () {
@@ -31,9 +38,11 @@ public class markerAction : MonoBehaviour {
 
 	public void playParticle()
 	{
+        
 		if(childPS!=null)
 		{
-			childPS.Play();
+               
+            childPS.Play();
 		}
 	}
 

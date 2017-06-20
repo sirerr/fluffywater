@@ -19,9 +19,7 @@ namespace fluffywater
             mat = GetComponentInChildren<SkinnedMeshRenderer>().material;
             birdcolor = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
             mat.color = birdcolor;
-
-
-            
+                        
         }
 
         // Use this for initialization
