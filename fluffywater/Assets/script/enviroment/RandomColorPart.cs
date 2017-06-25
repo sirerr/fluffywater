@@ -11,7 +11,7 @@ public class RandomColorPart : MonoBehaviour {
 	private Color newcolor;
 
 	public	void ranColor(Color chosenColor)
-	{	print("new color");
+	{//	print("new color");
 		newcolor = chosenColor;
 		childPart = GetComponentInChildren<ParticleSystem>();
 		var mainset = childPart.main;
@@ -19,7 +19,7 @@ public class RandomColorPart : MonoBehaviour {
 		col.enabled = true;
 
 		Gradient grad = new Gradient();
-		grad.SetKeys( new GradientColorKey[] {new GradientColorKey(newcolor,0.0f)}, new GradientAlphaKey[]{new GradientAlphaKey(1.0f,0.0f)});
+		grad.SetKeys( new GradientColorKey[] {new GradientColorKey(newcolor,0.0f)}, new GradientAlphaKey[]{new GradientAlphaKey(.15f,0.0f)});
 		mainset.startColor = grad;
 		col.color =grad;
 	}

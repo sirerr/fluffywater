@@ -13,5 +13,10 @@ public class gameManager : MonoBehaviour {
 			
 		}
 
+        public void RedoLighting()
+        {
+           
+        }
+
 }
 }

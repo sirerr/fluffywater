@@ -9,10 +9,14 @@ public class markerAction : MonoBehaviour {
 	public ParticleSystem childPS;
 	public bool psPlayDone = true;
     public Color partColor;
+        public float audioTime = 3f;
+        public AudioClip clip1;
+        public AudioClip clip2;
+        AudioSource asource;
 	public void Awake()
 	{
 		getChilds();
-        
+            asource = GetComponent<AudioSource>();
 
 	}
 
@@ -30,10 +34,16 @@ public class markerAction : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if(childPS.isPlaying)
-			psPlayDone = false;
-		else
-			psPlayDone = true;
+            if (childPS.isPlaying)
+            {
+                psPlayDone = false;
+            }
+
+            else
+            {
+                psPlayDone = true;
+            }
+			   
 	}
 
 	public void playParticle()
@@ -41,21 +51,19 @@ public class markerAction : MonoBehaviour {
         
 		if(childPS!=null)
 		{
-               
+            asource.PlayOneShot(clip2);
+          //  StartCoroutine(waiting());
             childPS.Play();
 		}
 	}
 
-	public IEnumerator waiting(float ranTime)
-	{
-		yield return new WaitForSeconds(ranTime);	
-		playParticle();
-	}
+        public IEnumerator waiting()
+        {
+            yield return new WaitForSeconds(audioTime);
+            asource.PlayOneShot(clip2);
+        }
 
-	public void doCour(float newtime)
-	{
-		StartCoroutine(waiting(newtime));
-	}
+ 
 }
 
 }

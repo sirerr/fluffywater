@@ -29,9 +29,11 @@ public class watercontrol : MonoBehaviour {
     // animation control
     public Animator creatBallAnim;
     public Animator playBallAnim;
+        public Animator SequenceAnim;
         //collider
-        public Collider col;
-
+    public Collider col;
+        public float TimeWaitBetweenSprouts = 1.5f;
+    
 	public void Awake()
 	{
 
@@ -62,7 +64,7 @@ public class watercontrol : MonoBehaviour {
 			for(int i=0;i<waterobjs.Count;i++)
 			{
 				float rantime = Random.Range(.5f,particleTimeLimit);
-				markerRefs[i].doCour(rantime);
+			//	markerRefs[i].doCour(rantime);
 			}
 		}
 	}
@@ -84,6 +86,29 @@ public class watercontrol : MonoBehaviour {
 		}
 
 	}
+
+        public void SequencePlay()
+        {
+            StartCoroutine(Sequence());
+        }
+
+        IEnumerator Sequence()
+        {
+            if (createmakers && waterobjs.Count >= 1)
+            {
+                for (int i = 0; i < waterobjs.Count; i++)
+                {
+                    yield return new WaitForSeconds(TimeWaitBetweenSprouts);
+                    if (markerRefs[i].psPlayDone)
+                    {
+                        RandomColorPart ran = waterobjs[i].GetComponent<RandomColorPart>();
+                        ran.ranColor(newRanColor);
+                        markerRefs[i].playParticle();
+                    }
+                }
+
+            }
+        }
 
 	public void RandomColor()
 	{
@@ -108,10 +133,12 @@ public class watercontrol : MonoBehaviour {
             if (waterobjs.Count >= 1)
             {
                 playBallAnim.enabled = true;
+                SequenceAnim.enabled = true;
             }
             else
             {
                 playBallAnim.enabled = false;
+                SequenceAnim.enabled = false;
             }
         }
 
