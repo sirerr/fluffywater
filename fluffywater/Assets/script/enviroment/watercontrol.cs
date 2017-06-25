@@ -75,8 +75,8 @@ public class watercontrol : MonoBehaviour {
 		{
 			for(int i=0;i<waterobjs.Count;i++)
 			{
-				if(markerRefs[i].psPlayDone)
-				{
+                    if (markerRefs[i].psPlayDone && markerRefs[i] != null)
+                    {
                         RandomColorPart ran = waterobjs[i].GetComponent<RandomColorPart>();
                         ran.ranColor(newRanColor);
                         markerRefs[i].playParticle();
@@ -99,7 +99,7 @@ public class watercontrol : MonoBehaviour {
                 for (int i = 0; i < waterobjs.Count; i++)
                 {
                     yield return new WaitForSeconds(TimeWaitBetweenSprouts);
-                    if (markerRefs[i].psPlayDone)
+                    if (markerRefs[i].psPlayDone && markerRefs[i]!=null)
                     {
                         RandomColorPart ran = waterobjs[i].GetComponent<RandomColorPart>();
                         ran.ranColor(newRanColor);

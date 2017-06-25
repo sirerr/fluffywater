@@ -9,11 +9,11 @@ public class controlboxAction : objectAction {
 
 	public Animator anim;
 	public watercontrol watercontrolref;
-
+        private AudioSource asource;
 	void Awake()
 	{
 		anim = GetComponent<Animator> ();
-	
+            asource = GetComponent<AudioSource>();
 	}
 
 	public override void mainAction ()
@@ -22,8 +22,15 @@ public class controlboxAction : objectAction {
 			{
 				watercontrolref.clearfountain ();
 				anim.SetTrigger ("switch");
+                StartCoroutine(smallWait());
 			}
 
 	}
+
+        IEnumerator smallWait()
+        {
+            yield return new WaitForSeconds(.4f);
+            asource.Play();
+        }
 	}
 }
