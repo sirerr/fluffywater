@@ -163,9 +163,9 @@ ModelImporter:
       - path: birdskel/root
         weight: 1
       - path: birdskel/root/head
-        weight: 1
+        weight: 0
       - path: birdskel/root/head/head_end
-        weight: 1
+        weight: 0
       - path: birdskel/root/leftthigh
         weight: 1
       - path: birdskel/root/leftthigh/leftankle
