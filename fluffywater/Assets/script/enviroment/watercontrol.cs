@@ -75,7 +75,7 @@ public class watercontrol : MonoBehaviour {
 		{
 			for(int i=0;i<waterobjs.Count;i++)
 			{
-                    if (markerRefs[i].psPlayDone && markerRefs[i] != null)
+                    if (markerRefs[i].psPlayDone && makerCounter!=0)
                     {
                         RandomColorPart ran = waterobjs[i].GetComponent<RandomColorPart>();
                         ran.ranColor(newRanColor);
