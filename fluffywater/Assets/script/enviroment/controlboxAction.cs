@@ -31,6 +31,8 @@ public class controlboxAction : objectAction {
         {
             yield return new WaitForSeconds(.4f);
             asource.Play();
+            yield return new WaitForEndOfFrame();
+            watercontrolref.startWaterProcess();
         }
 	}
 }
