@@ -5,10 +5,11 @@ using UnityEngine.UI;
 
 namespace fluffywater
 {
-
     public class watercontrol : MonoBehaviour
     {
-        public static bool createmakers = false;
+        public static bool createmakers = true;
+    //    public bool startmaking = true;
+
         //water objectlist
         public List<GameObject> waterobjs = new List<GameObject>();
         public List<markerAction> markerRefs = new List<markerAction>();
@@ -26,6 +27,8 @@ namespace fluffywater
         public bool firstTime = true;
         //random time value for emissions
         public float particleTimeLimit;
+        //default wait time
+        public float defaultPlayWaitTime = 3f;
         public Color newRanColor;
 
         // animation control
@@ -39,7 +42,7 @@ namespace fluffywater
 
         public void Awake()
         {
-
+            startWaterProcess();
         }
 
         public void clearfountain()
@@ -79,7 +82,7 @@ namespace fluffywater
         public void defaultPlay()
         {
             isPlaying = true;
-            print(isPlaying);
+         //   print(isPlaying);
             if (createmakers && waterobjs.Count >= 1)
             {
                 for (int i = 0; i < waterobjs.Count; i++)
@@ -93,6 +96,13 @@ namespace fluffywater
                 }
 
             }
+            StartCoroutine(defaultPlayWait());
+        }
+
+        IEnumerator defaultPlayWait()
+        {
+            yield return new WaitForSeconds(defaultPlayWaitTime);
+            isPlaying = false;
         }
 
         Coroutine SequenceCor;
@@ -133,8 +143,6 @@ namespace fluffywater
         public void startWaterProcess()
         {
             createmakers = true;
-
-            creatBallAnim.enabled = false;
             col.enabled = true;
 
         }
